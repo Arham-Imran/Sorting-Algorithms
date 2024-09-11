@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    srand(0);
+    srand(time(0));
     int arr[10] = {};
     for(int i=0; i<sizeof(arr)/sizeof(int); i++)
         arr[i] = rand() % 26;
