@@ -13,6 +13,7 @@ void bubbleSort(int* arr, int size)
                 arr[i+1] -= arr[i]; 
             }
         }
+        size--;
     }
 }
 
