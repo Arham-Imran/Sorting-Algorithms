@@ -7,32 +7,29 @@ void mergeTwoSubArrays(int* arr, int elementSize, int start, int size)
     int j = start + elementSize;
     for(int z=0; z<2*elementSize; z++)
     {
-        if(j >= size && i < start + elementSize)
+        if((j >= size || j >= (start + 2*elementSize))  && (i >= start + elementSize)) // checking if both subarrays have been completely traversed
+        {
+            break;
+        }
+        else if((j >= size || j >= (start + 2*elementSize)) && i < start + elementSize) // checking if 2nd subarray's limit has been hit and not first's
         {
             tempArr[z] = arr[i];
             i++;
             continue;
         }
-        else if(j >= size && i >= start + elementSize)
-        {
-            break;
-        }
-        if(arr[i] < arr[j] && i < (start + elementSize))
-        {
-            tempArr[z] = arr[i];
-            i++;
-        }
-        else if(arr[j] <= arr[i] && j < (start + 2*elementSize) && j < size)
+        else if(i >= (start + elementSize) && j < size && j < (start + 2*elementSize)) // checking if 1st subarray's limit has been hit and not second's
         {
             tempArr[z] = arr[j];
             j++;
+            continue;
         }
-        else if(j >= (start + 2*elementSize))
+
+        if(arr[i] < arr[j])
         {
             tempArr[z] = arr[i];
             i++;
         }
-        else if(i >= (start + elementSize) && j < size)
+        else if(arr[j] <= arr[i])
         {
             tempArr[z] = arr[j];
             j++;
