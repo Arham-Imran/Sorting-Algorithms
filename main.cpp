@@ -4,21 +4,23 @@ void maxHeapify(int* arr, int size, int nodeNum)
 {
     int leftChild = 2*nodeNum + 1;
     int rightChild = 2*nodeNum + 2;
+    int root = nodeNum;
 
-    if(leftChild < size && arr[leftChild] > arr[nodeNum] && (rightChild >= size || (arr[leftChild] >= arr[rightChild])))
+    if(leftChild < size && arr[leftChild] > arr[root])
     {
-        std::swap(arr[leftChild], arr[nodeNum]);
-        nodeNum = leftChild;
+        root = leftChild;
     }
-    else if(rightChild < size && arr[rightChild] > arr[nodeNum])
+    
+    if(rightChild < size && arr[rightChild] > arr[root])
     {
-        std::swap(arr[rightChild], arr[nodeNum]);
-        nodeNum = rightChild;
+        root = rightChild;
     }
 
-    if(nodeNum == rightChild || nodeNum == leftChild)
-        maxHeapify(arr, size, nodeNum);
-
+    if(root == rightChild || root == leftChild)
+    {
+        std::swap(arr[root], arr[nodeNum]);
+        maxHeapify(arr, size, root);
+    }
 }
 
 void heapSort(int* arr, int size)
