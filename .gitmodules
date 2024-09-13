@@ -1,0 +1,3 @@
+[submodule "Timing-Library"]
+	path = Timing-Library
+	url = https://github.com/Arham-Imran/Timing-Library.git
