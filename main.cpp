@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 
-
 void maxHeapify(int* arr, int size, int nodeNum)
 {
     int leftChild = 2*nodeNum + 1;
@@ -78,6 +77,24 @@ void quickSort(int* arr, int low, int high)
     quickSort(arr, low+1, high);
 }
 
+void RecursiveBubbleSort(int* arr, int size)
+{
+    if(size == 1)
+        return;
+
+    for(int i=0; i<size-1; i++)
+    {
+        if(arr[i] > arr[i+1])
+        {
+            arr[i+1] += arr[i];
+            arr[i] = arr[i+1] - arr[i];
+            arr[i+1] -= arr[i];
+        }
+    }
+
+    RecursiveBubbleSort(arr, --size);
+}
+
 int main(void)
 {
     srand(time(0));
@@ -96,6 +113,7 @@ int main(void)
 
     histogramSort(arr, sizeof(arr)/sizeof(int));
 
+    RecursiveBubbleSort(arr, sizeof(arr)/sizeof(int));
 
     for(int i=0; i<sizeof(arr)/sizeof(int); i++)
         std::cout << arr[i] << " ";
